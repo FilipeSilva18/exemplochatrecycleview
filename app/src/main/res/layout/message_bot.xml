@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,48 +8,75 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_message_profile"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@mipmap/laura"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:src="@mipmap/laura"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_message_name"
-        android:text="Laura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:text="Laura"
         android:textSize="12sp"
         app:layout_constraintLeft_toRightOf="@+id/image_message_profile"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="4dp" />
-
-    <TextView
-        android:id="@+id/text_message_body_bot"
-        android:text="hi man, how are you?"
-        android:background="@drawable/message_bot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxWidth="240dp"
-        android:padding="8dp"
-        android:textColor="#ffffff"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/text_message_name"
         app:layout_constraintLeft_toRightOf="@+id/image_message_profile"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/text_message_name">
+
+        <TextView
+            android:id="@+id/text_message_body_bot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/message_bot"
+            android:maxWidth="240dp"
+            android:padding="8dp"
+            android:text="       "
+            android:textColor="#ffffff" />
 
 
+        <TextView
+            android:id="@+id/text_message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/text_message_body_bot"
+            android:layout_below="@+id/text_message_body_bot"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_message_body_bot" />
 
-    <TextView
-        android:id="@+id/text_message_time"
-        android:text="11:40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        app:layout_constraintLeft_toRightOf="@+id/text_message_body"
-        android:layout_marginLeft="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_message_body" />
+        <com.eyalbira.loadingdots.LoadingDots
+            android:id="@+id/loading_type_message_bot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="3dp"
+            android:paddingRight="3dp"
+            android:visibility="gone"
+            app:LoadingDots_auto_play="true"
+            app:LoadingDots_dots_color="#FFB9B9B9"
+            app:LoadingDots_dots_count="3"
+            app:LoadingDots_dots_size="7.5dp"
+            app:LoadingDots_dots_space="1dp"
+            app:LoadingDots_jump_duration="200"
+            app:LoadingDots_jump_height="4dp"
+            app:LoadingDots_loop_duration="800"
+            app:LoadingDots_loop_start_delay="100" />
+
+
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package java.hackathon.filipe.hackathon;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
@@ -66,7 +68,12 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
 
 
     public void sendTextChatbot(View view) {
+
+        chatBotAdapter.addMessage(new MessageBot(messageUser.getText().toString(), false, MessageType.TEXT_USER, "USER"));
+        chatBotAdapter.notifyDataSetChanged();
+        mMessageRecycler.scrollToPosition(0);
         enviaWatson(messageUser.getText().toString(), this);
+        clearEditText();
     }
 
 
@@ -79,9 +86,12 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
                 .enqueue(new ServiceCallback<MessageResponse>() {
                     @Override
                     public void onResponse(final MessageResponse response) {
-                        sendMessageBot.sendMessageBot(new MessageBot(response.getText().get(0), true, 1, response.getIntents().get(0).getIntent()));
-
-
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                sendMessageBot.sendMessageBot(new MessageBot(response.getText().get(0), true, 1, response.getIntents().get(0).getIntent()));
+                            }
+                        });
                     }
                     @Override
                     public void onFailure(Exception e) {
@@ -96,7 +106,14 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
         System.out.println("FILIPEEE" + messageBot.toString());
         chatBotAdapter.addMessage(messageBot);
         chatBotAdapter.notifyDataSetChanged();
+        mMessageRecycler.scrollToPosition(0);
 
+    }
+
+    public void clearEditText(){
+        messageUser.setText("");
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(messageUser.getWindowToken(), 0);
     }
 
 
