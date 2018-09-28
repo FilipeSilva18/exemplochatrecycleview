@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.ibm.watson.developer_cloud.conversation.v1.ConversationService;
@@ -19,8 +20,15 @@ import com.ibm.watson.developer_cloud.conversation.v1.model.MessageResponse;
 import com.ibm.watson.developer_cloud.http.ServiceCallback;
 
 import java.hackathon.filipe.hackathon.chatbot.ChatBotAdapter;
+import java.hackathon.filipe.hackathon.chatbot.model.Aluno;
+import java.hackathon.filipe.hackathon.chatbot.model.CadastroResponse;
+import java.hackathon.filipe.hackathon.chatbot.service.RetrofitConfig;
 
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.POST;
 
 public class MainActivity extends AppCompatActivity implements SendMessageBot {
 
@@ -36,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
     private RecyclerView mMessageRecycler;
     private ChatBotAdapter chatBotAdapter;
     private Activity context;
-
 
 
     @Override
@@ -69,6 +76,25 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
 
     public void sendTextChatbot(View view) {
 
+
+        Call<CadastroResponse> call = new RetrofitConfig().getAlunoService().cadastrarAluno(new Aluno("vinicius", "vinicius", "vinicius"));
+        call.enqueue(new Callback<CadastroResponse>() {
+            @Override
+            public void onResponse(Call<CadastroResponse> call, Response<CadastroResponse> response) {
+                Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<CadastroResponse> call, Throwable t) {
+                System.out.println("eroooo" + t.getMessage());
+
+            }
+        });
+
+
+
+        MessageBot m = chatBotAdapter.lastMessage();
+
         chatBotAdapter.addMessage(new MessageBot(messageUser.getText().toString(), false, MessageType.TEXT_USER, "USER"));
         chatBotAdapter.notifyDataSetChanged();
         mMessageRecycler.scrollToPosition(0);
@@ -78,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
 
 
     public void enviaWatson(String string, final SendMessageBot sendMessageBot) {
+        final MessageBot[] messageBot = new MessageBot[1];
         MessageRequest requestWelcome = new MessageRequest.Builder()
                 .inputText(string)
                 .build();
@@ -86,13 +113,21 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
                 .enqueue(new ServiceCallback<MessageResponse>() {
                     @Override
                     public void onResponse(final MessageResponse response) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                sendMessageBot.sendMessageBot(new MessageBot(response.getText().get(0), true, 1, response.getIntents().get(0).getIntent()));
-                            }
-                        });
+                        if (!response.getIntents().isEmpty()) {
+                            messageBot[0] = new MessageBot(response.getText().get(0), true, 1, response.getIntents().get(0).getIntent());
+                        }else{
+                            messageBot[0] = new MessageBot("Ainda estou aprendendo, não entendi o que você falou :(", true, 1, "NAOENTENDE");
+
+                        }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    sendMessageBot.sendMessageBot(messageBot[0]);
+                                }
+                            });
+
                     }
+
                     @Override
                     public void onFailure(Exception e) {
                         Log.d(TAG, e.getMessage());
@@ -110,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements SendMessageBot {
 
     }
 
-    public void clearEditText(){
+    public void clearEditText() {
         messageUser.setText("");
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(messageUser.getWindowToken(), 0);

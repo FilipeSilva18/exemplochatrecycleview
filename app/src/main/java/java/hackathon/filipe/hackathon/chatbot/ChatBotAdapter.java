@@ -94,6 +94,7 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public void addMessage(MessageBot message) {
+        if(message!=null)
         messages.add(0, message);
         notifyDataSetChanged();
     }
