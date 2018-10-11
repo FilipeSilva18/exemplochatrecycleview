@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import java.hackathon.filipe.hackathon.MessageBot;
 import java.hackathon.filipe.hackathon.R;
+import java.hackathon.filipe.hackathon.chatbot.model.Conteudo;
 
 
 public class TextUserViewHolder extends ViewHolder {
@@ -16,8 +17,14 @@ public class TextUserViewHolder extends ViewHolder {
         textView = itemView.findViewById(R.id.text_message_body_user);
     }
 
+
     @Override
     public void bindType(MessageBot item) {
         textView.setText(item.getMessage());
+    }
+
+    @Override
+    public void bindType(Conteudo item) {
+
     }
 }

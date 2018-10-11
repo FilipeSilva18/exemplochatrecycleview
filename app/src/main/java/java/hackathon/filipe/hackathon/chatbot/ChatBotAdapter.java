@@ -2,8 +2,10 @@ package java.hackathon.filipe.hackathon.chatbot;
 
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,7 +17,9 @@ import org.w3c.dom.Text;
 import java.hackathon.filipe.hackathon.MessageBot;
 import java.hackathon.filipe.hackathon.MessageType;
 import java.hackathon.filipe.hackathon.R;
+import java.hackathon.filipe.hackathon.chatbot.viewholders.RecyclerItemClickListener;
 import java.hackathon.filipe.hackathon.chatbot.viewholders.TextBotViewHolder;
+import java.hackathon.filipe.hackathon.chatbot.viewholders.TextStudentViewHolder;
 import java.hackathon.filipe.hackathon.chatbot.viewholders.TextUserViewHolder;
 import java.hackathon.filipe.hackathon.chatbot.viewholders.ViewHolder;
 import java.text.SimpleDateFormat;
@@ -30,16 +34,18 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private TextView textViewBot;
     private TextView textViewTime;
     private LoadingDots loadingDots;
+    private boolean flagConteudo = false;
+    private RecyclerView listConteudo;
+    private PooAdapter pooAdapter;
+
+
 
     public ChatBotAdapter(){
         messages = new ArrayList<>();
     }
 
-    @NonNull
-    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
         View view;
-
         switch (type) {
 
             case MessageType.TEXT_BOT:
@@ -52,6 +58,12 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         .from(viewGroup.getContext())
                         .inflate(R.layout.message_user, viewGroup, false);
                 return new TextUserViewHolder(view);
+            case MessageType.TEXT_STUDENT:
+                flagConteudo = true;
+                view = LayoutInflater
+                        .from(viewGroup.getContext())
+                        .inflate(R.layout.items_poo, viewGroup, false);
+                return new TextStudentViewHolder(view);
             default:
                 break;
         }
@@ -61,6 +73,7 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MessageBot message = messages.get(position);
+
 
         if (message != null) {
             ((ViewHolder) holder).bindType(message);
@@ -73,8 +86,18 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     loadingMessage(message.getMessage());
                 }
             }
+            if(flagConteudo){
+                listConteudo = holder.itemView.findViewById(R.id.reyclerview_conteudos_list);
+                pooAdapter = new PooAdapter();
+                LinearLayoutManager layoutManager2 = new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.HORIZONTAL, false);
+                listConteudo.setLayoutManager(layoutManager2);
+                listConteudo.setAdapter(pooAdapter);
+                flagConteudo = false;
+            }
         }
     }
+
+
 
     @Override
     public int getItemCount() {
