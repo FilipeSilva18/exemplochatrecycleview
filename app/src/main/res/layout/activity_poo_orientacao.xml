@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".view.PooOrientacaoActivity"
+    android:layout_margin="12dp">
+
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="ORIENTAÇÃO A OBJETOS"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv5"
+        android:fontFamily="monospace"
+        android:text="1- Objeto"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv6"
+        android:fontFamily="monospace"
+        android:text="Coisa material ou abstrata que pode ser percebida pelos sentidos e descrita por meio de suas características, comportamentos e estado atual."
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="2- Classes"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Representa um modelo para construção de objetos! É um tipo de dado que representa a estrutura de um objeto real ou abstrato, através de atributos e métodos."
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="3- Atributos"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Propriedades de um objeto "
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv5"
+        android:fontFamily="monospace"
+        android:text="4- Métodos"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv6"
+        android:fontFamily="monospace"
+        android:text="Ações de um Objeto"
+        android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv5"
+        android:fontFamily="monospace"
+        android:text="5- Métodos Especiais"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv6"
+        android:fontFamily="monospace"
+        android:text="Métodos acessores para fornecer atributos privatos (getters) ou para modificar atrivutos privatos (Setters)."
+        android:textSize="17dp" />
+
+    <Button
+        android:id="@+id/btnIniciar"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv7"
+        android:background="@android:drawable/editbox_background_normal"
+        android:fontFamily="casual"
+        android:text="Início"
+        android:textSize="19dp"
+        android:onClick="backToMenu"/>
+
+
+
+
+
+
+
+</LinearLayout>
+
+

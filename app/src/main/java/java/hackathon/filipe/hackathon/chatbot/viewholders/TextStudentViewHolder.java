@@ -4,9 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.hackathon.filipe.hackathon.MessageBot;
+import java.hackathon.filipe.hackathon.model.MessageBot;
 import java.hackathon.filipe.hackathon.R;
-import java.hackathon.filipe.hackathon.chatbot.ChatBotAdapter;
 import java.hackathon.filipe.hackathon.chatbot.model.Conteudo;
 import java.util.List;
 

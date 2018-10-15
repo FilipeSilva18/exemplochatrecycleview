@@ -1,4 +1,4 @@
-package java.hackathon.filipe.hackathon;
+package java.hackathon.filipe.hackathon.model;
 
 public class MessageType {
     public static final int TEXT_BOT = 1;

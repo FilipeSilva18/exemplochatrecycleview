@@ -5,19 +5,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eyalbira.loadingdots.LoadingDots;
 
-import org.w3c.dom.Text;
-
-import java.hackathon.filipe.hackathon.MessageBot;
-import java.hackathon.filipe.hackathon.MessageType;
+import java.hackathon.filipe.hackathon.model.MessageBot;
+import java.hackathon.filipe.hackathon.model.MessageType;
 import java.hackathon.filipe.hackathon.R;
-import java.hackathon.filipe.hackathon.chatbot.viewholders.RecyclerItemClickListener;
 import java.hackathon.filipe.hackathon.chatbot.viewholders.TextBotViewHolder;
 import java.hackathon.filipe.hackathon.chatbot.viewholders.TextStudentViewHolder;
 import java.hackathon.filipe.hackathon.chatbot.viewholders.TextUserViewHolder;

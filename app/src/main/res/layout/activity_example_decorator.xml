@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        android:orientation="vertical"
+        tools:context=".ExampleDecoratorActivity">
+
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Padrão Decorator"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tv8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv5"
+            android:fontFamily="monospace"
+            android:text="1- Exemplo"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv6"
+            android:fontFamily="monospace"
+            android:text="Vamos fazer o cálculo de impostos, Temos 4 classes (CalculadorDeimposto, ICMS, ISS e Orcamento) e 1 interface (Imposto). Você já deve estar imaginando que os impostos ICMS e ISS implementam a interface Imposto, e é isso mesmo! "
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="2- CalculadorDeImposto"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Possui apenas um método que é o realizaCalculo(Orcamento orcamento, Imposto impostoQualquer), esse método calcula o imposto para o orçamento utilizando o método da interface Imposto calculaImposto()"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="3- ICMS"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="A classe ICMS implementa a interface Imposto e com isso sobreescreve seu método calculaImposto(Orcamento orcamento) retornando o valor do orçamento + o imposto aplicado a 10% do valor do orçamento. E agora também possui dois construtores, um sem receber nada (public ICMS()) e o outro recebendo o outroImposto (public ICMS(Imposto outroImposto)) para os casos de impostos complexos."
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv5"
+            android:fontFamily="monospace"
+            android:text="4- ISS"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv6"
+            android:fontFamily="monospace"
+            android:text="A classe ICMS implementa a interface Imposto e com isso sobreescreve seu método calculaImposto(Orcamento orcamento) retornando o valor do orçamento + o imposto aplicado a 6% do valor do orçamento. E agora também possui dois construtores, um sem receber nada (public ICMS()) e o outro recebendo o outroImposto (public ICMS(Imposto outroImposto)) para os casos de impostos complexos."
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/tv10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv5"
+            android:fontFamily="monospace"
+            android:text="5- Orcamento"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv6"
+            android:fontFamily="monospace"
+            android:text="A classe orçamento posui o atributo double valor, e os métodos get e set do atributo"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/tv15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv5"
+            android:fontFamily="monospace"
+            android:text="6- Imposto"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv6"
+            android:fontFamily="monospace"
+            android:text="A interface imposto também sofre algumas mudanças comparado aos outros padrões de projeto. Agora temos um atributo Imposto outroImposto, que vai indicar se é um imposto composto, além disso, temos 2 construtores, o normal public Imposto(), e o construtor para quando houver mais de um imposto instanciado public Imposto (Imposto outroImposto), que recebe por parâmetro o outro imposto. Ainda temos mais algumas mudanças, que é o método calculaOutroImposto(Orcamento orcamento), precisamos apenas chamar o método calculaImposto() do outro imposto passando o orcamento (outroImposto.calculaImposto(orcamento)) E pronto! Está implementado o decorator."
+            android:textSize="17dp" />
+
+
+        <Button
+            android:id="@+id/btnIniciar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv7"
+            android:layout_centerHorizontal="true"
+            android:background="@android:drawable/editbox_background_normal"
+            android:fontFamily="casual"
+            android:onClick="backPadroesProjeto"
+            android:text="Voltar Padrões de Projetos"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+

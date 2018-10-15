@@ -3,45 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity"
+    tools:context=".view.MenuActivity"
     android:orientation="vertical"
     android:background="@drawable/message_bot"
     android:gravity="center_vertical"
     >
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
-
-
+    <Button
+        android:layout_width="match_parent"
+        android:background="@drawable/botoes_menu"
+        android:layout_height="wrap_content"
+        android:text="História do Java"
+        android:onClick="historiaJava"
+        android:layout_margin="6dp"
+        android:id="@+id/btn_2"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/botoes_menu"
         android:text="Teoria POO"
+        android:onClick="teoriaPOO"
         android:layout_margin="6dp"
         android:id="@+id/btn_1"/>
-    <Button
-        android:layout_width="match_parent"
-        android:background="@drawable/botoes_menu"
-        android:layout_height="wrap_content"
-        android:text="Prática POO"
-        android:layout_margin="6dp"
-        android:id="@+id/btn_2"/>
+
     <Button
         android:layout_width="match_parent"
         android:background="@drawable/botoes_menu"
         android:layout_height="wrap_content"
         android:text="Padrões de Projeto"
+        android:onClick="padroesProjeto"
         android:layout_margin="6dp"
         android:id="@+id/btn_3"/>
-    <Button
-        android:layout_width="match_parent"
-        android:background="@drawable/botoes_menu"
-        android:layout_height="wrap_content"
-        android:text="Aprender com o chatbot"
-        android:layout_margin="6dp"
-        android:id="@+id/btn_4"/>
 
 </LinearLayout>
